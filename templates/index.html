@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority Analyzer</title>
+    <link href="{{ url_for('static', filename='styles/index.css') }}" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- header -->
+    <div class="header">
+        <img src="../static/img/header_bg.png" alt="Image 1" class="image1">
+        <img src="../static/img/hwave.png" alt="Image 2" class="image2">
+        <img src="../static/img/TCS_logo.png" alt="Image 3" class="image3">
+    </div>
+
+    <div class="title">
+        <h3>Priority Analysis for Support Tickets (Llama 3.1 - 7B)</h3>
+    </div>
+
+    <!-- Main content with grid layout -->
+    <div class="main-container">
+        <!-- Left half for input and file upload -->
+        <div class="input-main" style="height: 425px;">
+            <div class="form">
+                <form id="sentiment-form">
+                    <textarea id="ticketDescription" name="Tickets" rows="4" cols="50" placeholder="Enter your text here"></textarea><br/><br/>
+                    <input type="button" id="check-btn" value="Check" onclick="checkPriority()">
+                </form>
+                <div id="loading-indicator" style="display: none; font-weight: bold;">Analyzing...</div> <!-- Loading indicator -->
+
+                <div id="result"></div>
+            </div>
+            <div class="or"><h3>or</h3></div>
+            <div class="file-table-main">
+                <!-- <label for="fileUpload" id="label-file">Upload file</label> -->
+                <input type="file" id="fileUpload" accept=".xlsx" class="label-file"/>
+            </div>
+            <button id="analyzeBulkBtn" onclick="analyzeBulk()">Analyze Bulk</button>
+
+        </div>
+
+        <!-- Right half for progress bars or table -->
+        <div class="right-section">
+            <!-- Placeholder for bulk data -->
+            <p id="bulk-placeholder">Bulk data will be displayed here</p>
+
+            <!-- Loading screen -->
+            <div id="loading-screen" style="display:none;">Analyzing, please wait...</div>
+            <!-- Table for File Upload -->
+            <div class="table-container" id="resultTable"></div>
+
+            <div id="timer" style="display: none; font-weight: 500; margin-top: 20px; text-align: center;">
+                Time Taken: <span id="timeElapsed">0m 0s</span>
+            </div>
+
+            <button id="downloadBtn" style="display:none; margin-top: 25px; padding: 10px;border-radius: 20px;" onclick="downloadXLSX()">Download as XLSX</button>
+            
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <img src="../static/img/tcslogo.png" class="image4"/>
+        <p class="fp">&copy; 2024 Tata Consultancy Services Limited. All Rights Reserved | TCS Data Privacy Policy | Cookie Policy | Browser and Display Compatibility | Release Version | Support</p>
+        <img src="../static/img/tata.png" class="image5"/>
+    </div>
+
+    <script src="../static/script/index.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+</body>
+</html>
